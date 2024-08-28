@@ -1,0 +1,16 @@
+nav {
+    padding: 10px;
+    background-color: #f1f1f1;
+    text-align: center;
+}
+
+a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+a.active {
+    font-weight: bold;
+    color: #007bff;
+}

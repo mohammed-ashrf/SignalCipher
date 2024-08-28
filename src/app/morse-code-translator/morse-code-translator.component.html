@@ -1,0 +1,39 @@
+<div class="container">
+    <h2>Morse Code Translator</h2>
+    <div class="toggle">
+      <button (click)="showView('morseToText')" [class.active]="currentView === 'morseToText'">Morse To Text</button>
+      <button (click)="showView('textToMorse')" [class.active]="currentView === 'textToMorse'">Text To Morse</button>
+    </div>
+  
+    <div class="content">
+      <div class="morseToText" *ngIf="currentView === 'morseToText'">
+        <div class="input-group">
+          <label for="morseInput">Morse Code Input:</label>
+          <textarea id="morseInput" [(ngModel)]="morseInput" rows="5"></textarea>
+          <button (click)="translateToText()">Translate to Text</button>
+        </div>
+        <div class="output-group">
+          <label for="textOutput">Text Output:</label>
+          <textarea id="textOutput" [value]="textOutput" rows="5" readonly></textarea>
+        </div>
+      </div>
+  
+      <div class="textToMorse" *ngIf="currentView === 'textToMorse'">
+        <div class="input-group">
+          <label for="textInput">Text Input:</label>
+          <textarea id="textInput" [(ngModel)]="textInput" rows="5"></textarea>
+          <button (click)="translateToMorse()">Translate to Morse Code</button>
+        </div>
+        <div class="output-group">
+          <label for="morseOutput">Morse Code Output:</label>
+          <textarea id="morseOutput" [value]="morseOutput" rows="5" readonly></textarea>
+        </div>
+      </div>
+    </div>
+
+     <!-- Phone Number and Send Button -->
+    <div class="send-group">
+        <button (click)="sendMessage()">Send via WhatsApp</button>
+    </div>
+</div>
+  

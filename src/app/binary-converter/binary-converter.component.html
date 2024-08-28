@@ -1,0 +1,38 @@
+<div class="container">
+    <h2>Binary Code Translator</h2>
+    <div class="toggle">
+      <button (click)="showView('binaryToText')" [class.active]="currentView === 'binaryToText'">Binary To Text</button>
+      <button (click)="showView('textToBinary')" [class.active]="currentView === 'textToBinary'">Text To Binary</button>
+    </div>
+    
+    <div class="content">
+      <div class="BinaryToText" *ngIf="currentView === 'binaryToText'">
+        <div class="input-group">
+          <label for="binaryInput">Binary Input:</label>
+          <textarea id="binaryInput" [(ngModel)]="binaryInput" rows="5"></textarea>
+          <button (click)="translateToText()">Translate to Text</button>
+        </div>
+        <div class="output-group">
+          <label for="textOutput">Text Output:</label>
+          <textarea id="textOutput" [value]="textOutput" rows="5" readonly></textarea>
+        </div>
+      </div>
+      
+      <div class="textToBinary" *ngIf="currentView === 'textToBinary'">
+        <div class="input-group">
+          <label for="textInput">Text Input:</label>
+          <textarea id="textInput" [(ngModel)]="textInput" rows="5"></textarea>
+          <button (click)="translateToBinary()">Translate to Binary</button>
+        </div>
+        <div class="output-group">
+          <label for="binaryOutput">Binary Output:</label>
+          <textarea id="binaryOutput" [value]="binaryOutput" rows="5" readonly></textarea>
+        </div>
+      </div>
+    </div>
+
+     <!-- Phone Number and Send Button -->
+     <div class="send-group">
+        <button (click)="sendMessage()">Send via WhatsApp</button>
+    </div>
+</div>
