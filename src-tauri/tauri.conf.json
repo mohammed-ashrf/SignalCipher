@@ -1,7 +1,7 @@
 {
   "productName": "cipher-signal",
   "version": "0.1.0",
-  "identifier": "com.tauri.dev",
+  "identifier": "com.CipherSignal.dev",
   "build": {
     "frontendDist": "../dist/decoder",
     "devUrl": "http://localhost:4200",
