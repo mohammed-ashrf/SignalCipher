@@ -1,16 +1,109 @@
+/* Ensure the header is always on top */
+header {
+    width: 100%;
+    background-color: #2c3e50;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: fixed; /* Fixed at the top */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* High z-index to stay above content */
+    height: 60px; /* Set a height for the header */
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    padding-top: 10px;
+}
+
 nav {
-    padding: 10px;
-    background-color: #f1f1f1;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px;
+    /* background-color: #34495e; */
 }
 
-a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #333;
-}
-
-a.active {
+.logo {
+    font-size: 18px;
     font-weight: bold;
-    color: #007bff;
+    color: #ecf0f1;
+}
+
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #ecf0f1;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s, font-weight 0.3s;
+}
+
+.nav-links a.active,
+.nav-links a:hover {
+    color: #3498db;
+    font-weight: bold;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 53px;
+        left: 0;
+        background-color: #2c3e50;
+        text-align: center;
+        padding: 20px 0;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        margin: 10px 0;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    .nav-links {
+        top: 40px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .menu-toggle .bar {
+        width: 25px;
+        height: 2px;
+    }
 }

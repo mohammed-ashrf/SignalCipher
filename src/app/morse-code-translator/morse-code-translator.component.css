@@ -1,11 +1,10 @@
 :host {
     display: block;
     padding: 20px;
-    max-width: 800px;
+    max-width: 100%;
     margin: 0 auto;
     font-family: 'Arial', sans-serif;
     background: #fff;
-    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
   

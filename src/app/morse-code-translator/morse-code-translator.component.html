@@ -9,24 +9,24 @@
       <div class="morseToText" *ngIf="currentView === 'morseToText'">
         <div class="input-group">
           <label for="morseInput">Morse Code Input:</label>
-          <textarea id="morseInput" [(ngModel)]="morseInput" rows="5"></textarea>
+          <textarea id="morseInput" [(ngModel)]="morseInput" rows="3"></textarea>
           <button (click)="translateToText()">Translate to Text</button>
         </div>
         <div class="output-group">
           <label for="textOutput">Text Output:</label>
-          <textarea id="textOutput" [value]="textOutput" rows="5" readonly></textarea>
+          <textarea id="textOutput" [value]="textOutput" rows="3" readonly></textarea>
         </div>
       </div>
   
       <div class="textToMorse" *ngIf="currentView === 'textToMorse'">
         <div class="input-group">
           <label for="textInput">Text Input:</label>
-          <textarea id="textInput" [(ngModel)]="textInput" rows="5"></textarea>
+          <textarea id="textInput" [(ngModel)]="textInput" rows="3"></textarea>
           <button (click)="translateToMorse()">Translate to Morse Code</button>
         </div>
         <div class="output-group">
           <label for="morseOutput">Morse Code Output:</label>
-          <textarea id="morseOutput" [value]="morseOutput" rows="5" readonly></textarea>
+          <textarea id="morseOutput" [value]="morseOutput" rows="3" readonly></textarea>
         </div>
       </div>
     </div>

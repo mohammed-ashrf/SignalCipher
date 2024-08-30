@@ -9,24 +9,24 @@
       <div class="BinaryToText" *ngIf="currentView === 'binaryToText'">
         <div class="input-group">
           <label for="binaryInput">Binary Input:</label>
-          <textarea id="binaryInput" [(ngModel)]="binaryInput" rows="5"></textarea>
+          <textarea id="binaryInput" [(ngModel)]="binaryInput" rows="3"></textarea>
           <button (click)="translateToText()">Translate to Text</button>
         </div>
         <div class="output-group">
           <label for="textOutput">Text Output:</label>
-          <textarea id="textOutput" [value]="textOutput" rows="5" readonly></textarea>
+          <textarea id="textOutput" [value]="textOutput" rows="3" readonly></textarea>
         </div>
       </div>
       
       <div class="textToBinary" *ngIf="currentView === 'textToBinary'">
         <div class="input-group">
           <label for="textInput">Text Input:</label>
-          <textarea id="textInput" [(ngModel)]="textInput" rows="5"></textarea>
+          <textarea id="textInput" [(ngModel)]="textInput" rows="3"></textarea>
           <button (click)="translateToBinary()">Translate to Binary</button>
         </div>
         <div class="output-group">
           <label for="binaryOutput">Binary Output:</label>
-          <textarea id="binaryOutput" [value]="binaryOutput" rows="5" readonly></textarea>
+          <textarea id="binaryOutput" [value]="binaryOutput" rows="3" readonly></textarea>
         </div>
       </div>
     </div>

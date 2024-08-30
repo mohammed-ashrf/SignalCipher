@@ -1,7 +1,18 @@
 <header>
     <nav>
-        <a routerLink="/cipher" routerLinkActive="active">cipher</a>
-        <a routerLink="/binary" routerLinkActive="active">Binary Converter</a>
-        <a routerLink="/morse" routerLinkActive="active">Morse Converter</a>
+        <div class="logo">
+            <img src="assets/icons/icon.png" alt="logo">
+            SignalCipher
+        </div>
+        <div class="menu-toggle" (click)="toggleMenu()">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <div class="nav-links" [ngClass]="{'active': isMenuOpen}">
+            <a routerLink="/cipher" routerLinkActive="active" (click)="closeMenu()">Cipher</a>
+            <a routerLink="/binary" routerLinkActive="active" (click)="closeMenu()">Binary Converter</a>
+            <a routerLink="/morse" routerLinkActive="active" (click)="closeMenu()">Morse Converter</a>
+        </div>
     </nav>
 </header>

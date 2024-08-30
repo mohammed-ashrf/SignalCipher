@@ -1,0 +1,13 @@
+/* Adjust content margin to avoid overlap */
+main {
+    margin-top: 60px; /* Match this with header height */
+    overflow: hidden; /* Prevent overflow */
+}
+
+/* Ensure no unnecessary scrollbar on the body */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+}
