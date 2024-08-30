@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MorseCodeService } from '../services/morse-code.service';
 import { WhatsappService } from '../services/whatsapp.service';
+import { TelegramService } from '../services/telegram.service';
 @Component({
   selector: 'app-morse-code-translator',
   templateUrl: './morse-code-translator.component.html',
@@ -13,7 +14,7 @@ export class MorseCodeTranslatorComponent {
   morseOutput: string = '';
   currentView: string = 'textToMorse'; // Default view
 
-  constructor(private morseCodeService: MorseCodeService, private whatsappService: WhatsappService) {}
+  constructor(private morseCodeService: MorseCodeService, private whatsappService: WhatsappService, private telegramService: TelegramService) {}
 
   showView(view: string) {
     this.currentView = view;
@@ -31,7 +32,7 @@ export class MorseCodeTranslatorComponent {
     });
   }
 
-  sendMessage() {
+  sendMessageViaWhatsapp() {
     // Determine message to send
     const message = this.currentView === 'binaryToText' ? this.textOutput : this.morseOutput;
     if (!message) {
@@ -39,8 +40,21 @@ export class MorseCodeTranslatorComponent {
       return;
     }
 
-    this.whatsappService.sendViaWhatsapp(message)
-      .then(() => alert('Message sent successfully!'))
+    this.whatsappService.sendViaWhatsapp( message)
+      .then(() => console.log("sending message"))
+      .catch(err => alert(`Failed to send message: ${err}`));
+  }
+
+  sendMessageViaTelegram() {
+    // Determine message to send
+    const message = this.currentView === 'binaryToText' ? this.textOutput : this.morseOutput;
+    if (!message) {
+      alert('No message to send.');
+      return;
+    }
+
+    this.telegramService.sendViaWhatsapp( message)
+      .then(() => console.log("sending message"))
       .catch(err => alert(`Failed to send message: ${err}`));
   }
 }

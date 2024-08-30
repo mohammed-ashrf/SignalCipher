@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { BinaryService } from '../services/binary.service';
 import { WhatsappService } from '../services/whatsapp.service';
+import { TelegramService } from '../services/telegram.service';
 @Component({
   selector: 'app-binary-converter',
   templateUrl: './binary-converter.component.html',
@@ -13,7 +14,7 @@ export class BinaryConverterComponent {
   binaryOutput: string = '';
   currentView: string = 'textToBinary'; 
 
-  constructor(private binaryService: BinaryService, private whatsappService: WhatsappService) {}
+  constructor(private binaryService: BinaryService, private whatsappService: WhatsappService,private telegramService: TelegramService) {}
 
   showView(view: string) {
     this.currentView = view;
@@ -31,7 +32,7 @@ export class BinaryConverterComponent {
     });
   }
 
-  sendMessage() {
+  sendMessageViaWhatsapp() {
     // Determine message to send
     const message = this.currentView === 'binaryToText' ? this.textOutput : this.binaryOutput;
     if (!message) {
@@ -40,6 +41,19 @@ export class BinaryConverterComponent {
     }
 
     this.whatsappService.sendViaWhatsapp( message)
+      .then(() => console.log("sending message"))
+      .catch(err => alert(`Failed to send message: ${err}`));
+  }
+
+  sendMessageViaTelegram() {
+    // Determine message to send
+    const message = this.currentView === 'binaryToText' ? this.textOutput : this.binaryOutput;
+    if (!message) {
+      alert('No message to send.');
+      return;
+    }
+
+    this.telegramService.sendViaWhatsapp( message)
       .then(() => console.log("sending message"))
       .catch(err => alert(`Failed to send message: ${err}`));
   }

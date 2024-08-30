@@ -31,8 +31,9 @@
       </div>
     </div>
 
-     <!-- Phone Number and Send Button -->
+     <!-- Send Button -->
      <div class="send-group">
-        <button (click)="sendMessage()">Send via WhatsApp</button>
+      <button (click)="sendMessageViaWhatsapp()" class="whatsapp-button">Send via WhatsApp</button>
+      <button (click)="sendMessageViaTelegram()" class="telegram-button">Send via Telegram</button>
     </div>
 </div>

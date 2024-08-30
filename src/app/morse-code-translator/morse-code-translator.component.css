@@ -121,8 +121,12 @@ textarea[readonly] {
     box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
 }
 
+.send-group {
+    display: flex;
+    justify-content: center;
+}
 /* Button hover state */
-.send-group button:hover {
+.send-group .whatsapp-button:hover {
     background-color: #218838;
 }
 
@@ -134,5 +138,11 @@ textarea[readonly] {
     button {
         padding: 8px 16px;
         font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .send-group {
+        flex-direction: column;
     }
 }

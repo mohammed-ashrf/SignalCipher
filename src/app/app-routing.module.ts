@@ -3,12 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { BinaryConverterComponent } from './binary-converter/binary-converter.component';
 import { MorseCodeTranslatorComponent } from './morse-code-translator/morse-code-translator.component';
 import { WhatsappComponent } from './whatsapp/whatsapp.component';
+import { CipherComponent } from './cipher/cipher.component';
 const routes: Routes = [
-  { path:'', redirectTo: '/binary', pathMatch: "full" },
+  { path:'', redirectTo: '/cipher', pathMatch: "full" },
   { path: 'binary', component: BinaryConverterComponent },
   { path: 'morse', component: MorseCodeTranslatorComponent },
+  { path: 'cipher', component: CipherComponent },
   { path: 'whatsapp', component: WhatsappComponent }
-
 ];
 
 @NgModule({

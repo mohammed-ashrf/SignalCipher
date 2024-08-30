@@ -1,0 +1,182 @@
+/* Base styles */
+.cipher-container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box; /* Ensure padding is included in the width */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: border-color 0.3s;
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.radio-group label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 5px;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 10px;
+}
+
+.encrypt-btn {
+    background-color: #28a745;
+}
+
+.encrypt-btn:hover {
+    background-color: #218838;
+}
+
+.decrypt-btn {
+    background-color: #dc3545;
+}
+
+.decrypt-btn:hover {
+    background-color: #c82333;
+}
+
+.result-group {
+    margin-top: 20px;
+}
+
+.result-group label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.result-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    height: 80px;
+    resize: none;
+    transition: border-color 0.3s;
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.result-group textarea:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.send-group {
+    display: flex;
+    justify-content: center;
+}
+
+.send-group button {
+    display: block;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+/* Button hover state */
+.send-group .whatsapp-button:hover {
+    background-color: #218838;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .radio-group {
+        flex-direction: row;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .result-group textarea {
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cipher-container {
+        padding: 15px;
+    }
+
+    .form-group input,
+    .result-group textarea {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .send-group {
+        flex-direction: column;
+    }
+}

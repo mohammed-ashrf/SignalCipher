@@ -1,6 +1,8 @@
 mod binary;
 mod morse;
 mod whatsapp;
+mod telegram;
+mod cipher;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -10,7 +12,10 @@ pub fn run() {
       binary::text_to_binary,
       morse::morse_to_text,
       morse::text_to_morse,
-      whatsapp::send_via_whatsapp
+      whatsapp::send_via_whatsapp,
+      telegram::send_via_telegram,
+      cipher::cipher_c_command,
+      cipher::cipher_v_command
     ])
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
