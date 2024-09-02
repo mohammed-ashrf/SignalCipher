@@ -4,3 +4,4 @@
 /gen/schemas
 keystore.properties
 /gen/android/keystore.properties
+.cargo/config.toml
