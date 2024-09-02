@@ -8,88 +8,66 @@ on:
 
 jobs:
   publish-tauri:
-    permissions:
-      contents: write
+    runs-on: ${{ matrix.platform }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - platform: 'macos-latest' # for Arm based macs (M1 and above).
-            args: '--target aarch64-apple-darwin'
-          - platform: 'macos-latest' # for Intel based macs.
-            args: '--target x86_64-apple-darwin'
+          - platform: 'macos-latest'
+            target: 'aarch64-apple-darwin'
+          - platform: 'macos-latest'
+            target: 'x86_64-apple-darwin'
           - platform: 'ubuntu-22.04'
-            args: '--target aarch64-apple-darwin'
+            target: 'x86_64-unknown-linux-gnu'
           - platform: 'windows-latest'
-            args: ''
+            target: 'x86_64-pc-windows-msvc'
 
-    runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v4
 
-      - name: install dependencies (ubuntu only)
+      - name: Install dependencies (Ubuntu only)
         if: matrix.platform == 'ubuntu-22.04'
         run: |
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
-          
-      - name: Install cross-compilation tools
-        if: matrix.platform == 'ubuntu-22.04'
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y build-essential clang cmake libssl-dev
 
-      - name: Install osxcross
-        if: matrix.platform == 'ubuntu-22.04'
-        run: |
-          git clone https://github.com/tpoechtrager/osxcross.git
-          cd osxcross
-          wget https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX11.3.sdk.tar.xz
-          tar -Jxf MacOSX11.3.sdk.tar.xz -C ./tarballs/
-          UNATTENDED=yes OSX_VERSION_MIN=10.9 ./build.sh
-          export PATH=$PATH:$(pwd)/target/bin
-          cd ..
-          
-      - name: setup node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: lts/*
+          node-version: 'lts/*'
           cache: 'npm'
 
-      - name: install Rust stable
-        uses: dtolnay/rust-toolchain@stable
+      - name: Install Rust toolchain
+        uses: actions-rs/toolchain@v1
         with:
-          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+          toolchain: stable
+          targets: ${{ matrix.target }}
+          profile: minimal
+          override: true
 
-      - name: Install Rust targets
-        if: matrix.platform == 'macos-latest' || matrix.platform == 'ubuntu-22.04'
-        run: |
-          rustup target add aarch64-apple-darwin x86_64-apple-darwin
-          rustup component add rust-std --target aarch64-apple-darwin
-
-      - name: Rust cache
-        uses: swatinem/rust-cache@v2
+      - name: Cache Rust dependencies
+        uses: actions/cache@v3
         with:
-          workspaces: './src-tauri -> target'
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cargo-
 
-      - name: Setup environment for cross-compilation
-        if: matrix.platform == 'ubuntu-22.04'
-        run: |
-          export CARGO_TARGET_AARCH64_APPLE_DARWIN_LINKER=o64-clang
-          export CARGO_TARGET_AARCH64_APPLE_DARWIN_AR=o64-ar
-          export CC_aarch64_apple_darwin=o64-clang
-          export AR_aarch64_apple_darwin=o64-ar
-
-      - name: install frontend dependencies
+      - name: Install Frontend Dependencies
         run: npm install
 
-      - uses: tauri-apps/tauri-action@v0
+      - name: Build Frontend
+        run: npm run build
+
+      - name: Build Tauri App
+        uses: tauri-apps/action@v2
+        with:
+          tag: app-v${{ github.run_number }}
+          release: 'App v${{ github.run_number }}'
+          draft: true
+          prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tagName: app-v__VERSION__
-          releaseName: 'App v__VERSION__'
-          releaseBody: 'See the assets to download this version and install.'
-          releaseDraft: true
-          prerelease: false
-          args: ${{ matrix.args }}
+          TAURI_PLATFORM: ${{ matrix.target }}
