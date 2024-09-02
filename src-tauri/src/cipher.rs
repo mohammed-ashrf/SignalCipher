@@ -34,19 +34,29 @@ pub fn cipher_c_command(text: String, key: i32, encrypt: bool, language: String)
 }
 
 fn vigenere_cipher(text: &str, key: &str, encrypt: bool) -> String {
-    let key_bytes = key.as_bytes();
+    // Filter the key to include only alphabetic characters and convert to bytes
+    let key_bytes: Vec<u8> = key.chars()
+        .filter(|c| c.is_ascii_alphabetic())
+        .map(|c| c.to_ascii_lowercase() as u8 - b'a')
+        .collect();
     let key_len = key_bytes.len();
+    
+    // Return the original text if the key has no valid alphabetic characters
+    if key_len == 0 {
+        return text.to_string();
+    }
+    
     text.chars()
         .enumerate()
         .map(|(i, c)| {
             if c.is_ascii_alphabetic() {
                 let a = if c.is_uppercase() { b'A' } else { b'a' };
                 let shift = if encrypt {
-                    (key_bytes[i % key_len] as i8 - a as i8) as i8
+                    key_bytes[i % key_len] as i8
                 } else {
-                    -(key_bytes[i % key_len] as i8 - a as i8) as i8
+                    -(key_bytes[i % key_len] as i8)
                 };
-                let shifted = ((c as u8 - a + shift as u8) % 26) + a;
+                let shifted = ((c as u8 - a) as i8 + shift).rem_euclid(26) as u8 + a;
                 shifted as char
             } else {
                 c
@@ -54,6 +64,8 @@ fn vigenere_cipher(text: &str, key: &str, encrypt: bool) -> String {
         })
         .collect()
 }
+
+
 
 
 fn vigenere_cipher_unicode(text: &str, key: &str, encrypt: bool) -> String {
@@ -72,6 +84,7 @@ fn vigenere_cipher_unicode(text: &str, key: &str, encrypt: bool) -> String {
         })
         .collect()
 }
+
 
 
 #[tauri::command]

@@ -31,7 +31,7 @@ export class CipherComponent{
   }
 
   cipherText_v(encrypt: boolean) {
-    this.cipherService.cipherText_v(this.message, this.v_key, encrypt, this.language).then(result => {
+    this.cipherService.cipherText_v(this.message.trim(), this.v_key, encrypt, this.language).then(result => {
       this.result = result;
       this.updateTextDirection();
     }).catch(error => {
