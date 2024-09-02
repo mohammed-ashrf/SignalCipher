@@ -19,7 +19,7 @@ jobs:
           - platform: 'macos-latest' # for Intel based macs.
             args: '--target x86_64-apple-darwin'
           - platform: 'ubuntu-22.04'
-            args: ''
+            args: '--target aarch64-apple-darwin'
           - platform: 'windows-latest'
             args: ''
 
@@ -32,7 +32,24 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf
+          
+      - name: Install cross-compilation tools
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential clang cmake libssl-dev
 
+      - name: Install osxcross
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          git clone https://github.com/tpoechtrager/osxcross.git
+          cd osxcross
+          wget https://github.com/phracker/MacOSX-SDKs/releases/download/11.3/MacOSX11.3.sdk.tar.xz
+          tar -Jxf MacOSX11.3.sdk.tar.xz -C ./tarballs/
+          UNATTENDED=yes OSX_VERSION_MIN=10.9 ./build.sh
+          export PATH=$PATH:$(pwd)/target/bin
+          cd ..
+          
       - name: setup node
         uses: actions/setup-node@v4
         with:
@@ -45,13 +62,23 @@ jobs:
           targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
 
       - name: Install Rust targets
-        if: matrix.platform == 'macos-latest'
-        run: rustup target add aarch64-apple-darwin x86_64-apple-darwin
+        if: matrix.platform == 'macos-latest' || matrix.platform == 'ubuntu-22.04'
+        run: |
+          rustup target add aarch64-apple-darwin x86_64-apple-darwin
+          rustup component add rust-std --target aarch64-apple-darwin
 
       - name: Rust cache
         uses: swatinem/rust-cache@v2
         with:
           workspaces: './src-tauri -> target'
+
+      - name: Setup environment for cross-compilation
+        if: matrix.platform == 'ubuntu-22.04'
+        run: |
+          export CARGO_TARGET_AARCH64_APPLE_DARWIN_LINKER=o64-clang
+          export CARGO_TARGET_AARCH64_APPLE_DARWIN_AR=o64-ar
+          export CC_aarch64_apple_darwin=o64-clang
+          export AR_aarch64_apple_darwin=o64-ar
 
       - name: install frontend dependencies
         run: npm install
