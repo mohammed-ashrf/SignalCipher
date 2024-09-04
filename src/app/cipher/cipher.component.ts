@@ -61,9 +61,9 @@ export class CipherComponent{
       return;
     }
 
-    this.telegramService.sendViaWhatsapp( message)
+    this.telegramService.sendViaTelegram( message)
       .then(() => console.log("sending message"))
-      .catch(err => alert(`Failed to send message: ${err}`));
+      .catch(error => alert(`Failed to send message: ${error}`));
   }
 
   updateDirection(event: any) {

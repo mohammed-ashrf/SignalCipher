@@ -53,7 +53,7 @@ export class BinaryConverterComponent {
       return;
     }
 
-    this.telegramService.sendViaWhatsapp( message)
+    this.telegramService.sendViaTelegram( message)
       .then(() => console.log("sending message"))
       .catch(err => alert(`Failed to send message: ${err}`));
   }

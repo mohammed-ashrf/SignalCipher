@@ -17,6 +17,7 @@ pub fn run() {
       cipher::cipher_c_command,
       cipher::cipher_v_command
     ])
+    .plugin(tauri_plugin_shell::init())
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }

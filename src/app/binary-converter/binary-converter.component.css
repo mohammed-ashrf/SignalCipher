@@ -4,13 +4,16 @@
     max-width: 100%;
     margin: 0 auto;
     font-family: 'Arial', sans-serif;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    height: 100vh; /* Full screen height */
+    box-sizing: border-box;
 }
 
 h2 {
     font-size: 2rem;
-    color: #333;
+    color: #e0e0e0; /* Light text color */
     margin-bottom: 20px;
     text-align: center;
 }
@@ -22,9 +25,9 @@ h2 {
 }
 
 .toggle button {
-    background-color: #f1f1f1;
-    border: 1px solid #ddd;
-    color: #333;
+    background-color: #333; /* Dark button background */
+    border: 1px solid #444; /* Darker border */
+    color: #e0e0e0; /* Light text color */
     padding: 10px 20px;
     border-radius: 4px;
     font-size: 1rem;
@@ -40,12 +43,14 @@ h2 {
 }
 
 .toggle button:hover {
-    background-color: #e0e0e0;
+    background-color: #444;
 }
 
 .content {
     display: flex;
     flex-direction: column;
+    height: calc(100vh - 160px); /* Adjust height to account for other elements */
+    overflow-y: auto; /* Scroll if content overflows */
 }
 
 .input-group, .output-group {
@@ -61,11 +66,17 @@ label {
 textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #444; /* Darker border */
     border-radius: 4px;
     font-size: 1rem;
     box-sizing: border-box;
     resize: vertical;
+    background-color: #333; /* Darker textarea background */
+    color: #e0e0e0; /* Light text color */
+}
+
+textarea[readonly] {
+    background-color: #222; /* Darker background for readonly */
 }
 
 button {
@@ -85,49 +96,28 @@ button:hover {
     background-color: #0056b3;
 }
 
-textarea[readonly] {
-    background-color: #f9f9f9;
-}
-  
-/* Container for the input and button */
-/* Input group styling */
-.input-group {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-/* Label styling */
-.input-group label {
-    font-size: 14px;
-    margin-bottom: 5px;
-    color: #495057;
-}
-
-/* Input field styling */
-.input-group input {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    transition: border-color 0.3s ease;
-}
-
-/* Input focus state */
-.input-group input:focus {
-    outline: none;
-    border-color: #80bdff;
-    box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
-}
 .send-group {
     display: flex;
     justify-content: center;
 }
-/* Button hover state */
-.send-group .whatsapp-button:hover {
-    background-color: #218838;
+
+.send-group .whatsapp-button {
+    background-color: #25D366; /* WhatsApp color */
 }
-  
+
+.send-group .whatsapp-button:hover {
+    background-color: #128C7E;
+}
+
+.send-group .telegram-button {
+    background-color: #0088cc; /* Telegram color */
+}
+
+.send-group .telegram-button:hover {
+    background-color: #007ab8;
+}
+
+/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
     textarea {
         font-size: 0.9rem;
@@ -137,10 +127,16 @@ textarea[readonly] {
         padding: 8px 16px;
         font-size: 0.9rem;
     }
-
 }
+
 @media (max-width: 480px) {
     .send-group {
         flex-direction: column;
+    }
+
+    .container {
+        padding: 15px;
+        height: 100vh; /* Ensure full screen height on mobile */
+        box-sizing: border-box;
     }
 }
