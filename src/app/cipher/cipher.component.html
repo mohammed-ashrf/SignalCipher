@@ -1,40 +1,39 @@
 <div class="cipher-container">
-
     <div class="radio-group">
         <label>
           <input type="radio" name="language_en" value="en" [(ngModel)]="language" (change)="updateDirection($event)">
-          English
+          {{language== 'en' ? 'English' : 'الأنجليزية'}}
         </label>
         <label>
           <input type="radio" name="language_ar" value="ar" [(ngModel)]="language" (change)="updateDirection($event)">
-          Arabic
+          {{language == 'en' ? 'Arabic' : 'العربية'}}
         </label>
     </div>
 
     <div class="form-group">
-      <label for="message">Message</label>
-      <input type="text" id="message" [(ngModel)]="message" placeholder="Enter your message">
+      <label for="message">{{ language == 'en' ? 'Message' : 'رسالة'}}</label>
+      <input type="text" id="message" [(ngModel)]="message" placeholder="{{language == 'en'? 'Enter your message' : 'أدخل الرسالة'}}">
     </div>
   
     <div class="form-group">
-      <label for="key">Key</label>
-      <small>The key must be in English and it should only be letters</small>
-      <input type="text" id="key" [(ngModel)]="v_key" placeholder="Enter the key In English">
+      <label for="key">{{ language == 'en'? 'Key' : 'المفتاح'}}</label>
+      <small>{{language == 'en' ? 'The key must be in English and it should only be letters' : 'المفتاح يحب ان يكون بالأنجليزية ويجب أن يكون حروف وليس أرقام'}}</small>
+      <input type="text" id="key" [(ngModel)]="v_key" placeholder="{{language == 'en' ? 'Enter the key In English' : 'أدخل المفتاح بالأنجليزية'}}">
     </div>
   
     <div class="actions">
-      <button class="btn encrypt-btn" (click)="cipherText_v(true)">Encrypt</button>
-      <button class="btn decrypt-btn" (click)="cipherText_v(false)">Decrypt</button>
+      <button class="btn encrypt-btn" (click)="cipherText_v(true)">{{language == 'en' ? 'Encrypt' : 'تشفير'}}</button>
+      <button class="btn decrypt-btn" (click)="cipherText_v(false)">{{language == 'en' ? 'Decrypt' : 'فك التشفير'}}</button>
     </div>
   
     <div class="result-group">
-      <label for="result">Result</label>
+      <label for="result">{{language == 'en' ? "Result" : "النتيجة"}}</label>
       <textarea id="result" [value]="result" readonly></textarea>
     </div>
 
     <!-- Send Button -->
     <div class="send-group">
-        <button (click)="sendMessageViaWhatsapp()" class="whatsapp-button">Send via WhatsApp</button>
-        <button (click)="sendMessageViaTelegram()" class="telegram-button">Send via Telegram</button>
+        <button (click)="sendMessageViaWhatsapp()" class="whatsapp-button">{{language == 'en' ?'Send via WhatsApp' : 'أرسل عبر الواتساب'}}</button>
+        <button (click)="sendMessageViaTelegram()" class="telegram-button">{{language == 'en' ?'Send via Telegram' : 'أرسل عبر تليجرام'}}</button>
       </div>
 </div>  

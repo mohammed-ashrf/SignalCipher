@@ -3,6 +3,7 @@ mod morse;
 mod whatsapp;
 mod telegram;
 mod cipher;
+mod slack;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -14,6 +15,7 @@ pub fn run() {
       morse::text_to_morse,
       whatsapp::send_via_whatsapp,
       telegram::send_via_telegram,
+      slack::send_via_slack,
       cipher::cipher_c_command,
       cipher::cipher_v_command
     ])
