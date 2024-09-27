@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CipherService } from '../services/cipher.service';
 import { WhatsappService } from '../services/whatsapp.service';
 import { TelegramService } from '../services/telegram.service';
@@ -7,7 +7,7 @@ import { TelegramService } from '../services/telegram.service';
   templateUrl: './cipher.component.html',
   styleUrls: ['./cipher.component.css']
 })
-export class CipherComponent{
+export class CipherComponent implements OnInit{
   message: string = '';
   c_key: number = 0;
   v_key: string = '';
@@ -18,6 +18,12 @@ export class CipherComponent{
     private whatsappService: WhatsappService,
     private telegramService: TelegramService
   ) {
+  }
+  ngOnInit(): void {
+    let storedLanguage = window.localStorage.getItem('lang');
+    if (storedLanguage) {
+      this.language = storedLanguage;
+    }
     this.updateTextDirection();
   }
 
@@ -68,13 +74,15 @@ export class CipherComponent{
 
   updateDirection(event: any) {
     this.language = event.target.value;
+    window.localStorage.setItem('lang', this.language);
     this.updateTextDirection();
   }
   private updateTextDirection() {
+    let cipherContainer = document.getElementsByClassName('cipher-container')[0];
     if (this.language === 'ar') {
-      document.documentElement.dir = 'rtl';
+      cipherContainer.setAttribute('dir', 'rtl');
     } else {
-      document.documentElement.dir = 'ltr';
+      cipherContainer.setAttribute('dir', 'ltr');
     }
   }
 }
