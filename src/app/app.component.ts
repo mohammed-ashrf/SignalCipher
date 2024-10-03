@@ -8,7 +8,6 @@ import { NetworkService } from './services/network.service';
 export class AppComponent {
   title = 'decoder';
   constructor(private networkservice: NetworkService) {
-    // this.networkservice.serverUp();
-    // this.networkservice.advertiseService();
+
   }
 }
