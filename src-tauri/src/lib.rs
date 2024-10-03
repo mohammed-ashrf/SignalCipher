@@ -4,6 +4,7 @@ mod whatsapp;
 mod telegram;
 mod cipher;
 mod slack;
+mod local_send;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -17,7 +18,12 @@ pub fn run() {
       telegram::send_via_telegram,
       slack::send_via_slack,
       cipher::cipher_c_command,
-      cipher::cipher_v_command
+      cipher::cipher_v_command,
+      local_send::send_message_to_device,
+      local_send::send_file_to_device,
+      local_send::discover_devices,
+      local_send::server_up,
+      local_send::advertise_service
     ])
     .plugin(tauri_plugin_shell::init())
     .run(tauri::generate_context!())
