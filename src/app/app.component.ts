@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { NetworkService } from './services/network.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'decoder';
+  constructor(private networkservice: NetworkService) {
+    // this.networkservice.serverUp();
+    // this.networkservice.advertiseService();
+  }
 }

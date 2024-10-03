@@ -1,7 +1,7 @@
 :host {
     display: block;
     padding: 20px;
-    max-width: 100%;
+    max-width: 1000px;
     margin: 0 auto;
     font-family: 'Arial', sans-serif;
     background: #121212; /* Dark background */
@@ -49,8 +49,6 @@ h2 {
 .content {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 160px); /* Adjust height to account for other elements */
-    overflow-y: auto; /* Scroll if content overflows */
 }
 
 .input-group, .output-group {
@@ -89,6 +87,7 @@ button {
     font-size: 1rem;
     cursor: pointer;
     margin-top: 10px;
+    width: 100%; /* Make buttons fill available space */
     transition: background-color 0.3s;
 }
 
@@ -99,6 +98,14 @@ button:hover {
 .send-group {
     display: flex;
     justify-content: center;
+    flex-wrap: wrap; /* Allow buttons to wrap */
+}
+
+.send-group .whatsapp-button,
+.send-group .telegram-button {
+    flex: 1; /* Make buttons take equal space */
+    margin: 5px; /* Add some margin between buttons */
+    width: 100%; /* Ensure full width for buttons */
 }
 
 .send-group .whatsapp-button {
@@ -131,12 +138,23 @@ button:hover {
 
 @media (max-width: 480px) {
     .send-group {
-        flex-direction: column;
+        flex-direction: column; /* Change to column layout for mobile */
+        align-items: stretch; /* Stretch buttons to fill the width */
+    }
+
+    .send-group .whatsapp-button,
+    .send-group .telegram-button {
+        width: 100%; /* Full width for buttons */
+        margin: 5px 0; /* Vertical margin */
     }
 
     .container {
-        padding: 15px;
         height: 100vh; /* Ensure full screen height on mobile */
         box-sizing: border-box;
+    }
+
+    .toggle {
+        flex-direction: column;
+        gap: 10px;
     }
 }

@@ -11,6 +11,7 @@ import { MorseCodeTranslatorComponent } from './morse-code-translator/morse-code
 import { HeaderComponent } from './header/header.component';
 import { WhatsappComponent } from './whatsapp/whatsapp.component';
 import { CipherComponent } from './cipher/cipher.component';
+import { LocalSendComponent } from './local-send/local-send.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CipherComponent } from './cipher/cipher.component';
     MorseCodeTranslatorComponent,
     HeaderComponent,
     WhatsappComponent,
-    CipherComponent
+    CipherComponent,
+    LocalSendComponent
   ],
   imports: [
     BrowserModule,

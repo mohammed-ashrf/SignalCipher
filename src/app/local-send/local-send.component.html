@@ -1,0 +1,25 @@
+<div class="device-discovery">
+  <h3>Discover Devices</h3>
+  <button (click)="discoverDevices()" [disabled]="loading">Discover Devices</button>
+
+  <div *ngIf="loading" class="loading">
+      <div class="spinner"></div>
+  </div>
+
+  <ul *ngIf="devices.length > 0 && !loading">
+      <li *ngFor="let device of devices" (click)="selectDevice(device)">
+          {{ device.name }} - {{ device.ip }}
+      </li>
+  </ul>
+
+  <div *ngIf="selectedDevice">
+      <h4>Send Message to {{ selectedDevice.name }}</h4>
+      <input [(ngModel)]="messageText" placeholder="Enter message" />
+      <button (click)="sendMessage()">Send Message</button>
+
+      <h4>Send File to {{ selectedDevice.name }}</h4>
+      <button (click)="selectFile()">Select File</button>
+      <span *ngIf="selectedFilePath">Selected file: {{ selectedFilePath }}</span>
+      <button (click)="sendFile()" [disabled]="!selectedFilePath">Send File</button>
+  </div>
+</div>
