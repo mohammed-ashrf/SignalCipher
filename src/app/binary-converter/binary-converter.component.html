@@ -35,6 +35,9 @@
      <div class="send-group">
       <button (click)="sendMessageViaWhatsapp()" class="whatsapp-button">Send via WhatsApp</button>
       <button (click)="sendMessageViaTelegram()" class="telegram-button">Send via Telegram</button>
+      <button (click)="sendMessageViaMessenger()" class="messenger-button">{{language == 'en' ?'Send via Messenger' : 'أرسل عبر ماسنجر'}}</button>
+      <button (click)="sendMessageViaInstagram()" class="instagram-button">{{language == 'en' ?'Send via Instagram' : 'أرسل عبر إنستاجرام'}}</button>
+      <button (click)="sendMessageViaLine()" class="line-button">{{language == 'en' ?'Send via Line' : 'أرسل عبر لاين'}}</button>
     </div>
 
 </div>
