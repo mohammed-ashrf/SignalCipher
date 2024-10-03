@@ -82,6 +82,7 @@
 
 .encrypt-btn:hover {
     background-color: #218838;
+    transform: scale(1.02);
 }
 
 .decrypt-btn {
@@ -90,6 +91,7 @@
 
 .decrypt-btn:hover {
     background-color: #c82333;
+    transform: scale(1.02);
 }
 
 .result-group {
@@ -127,6 +129,7 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .send-group button {
@@ -148,6 +151,7 @@
 
 .send-group .whatsapp-button:hover {
     background-color: #128C7E;
+    transform: scale(1.05);
 }
 
 .send-group .telegram-button {
@@ -156,6 +160,31 @@
 
 .send-group .telegram-button:hover {
     background-color: #007ab8;
+    transform: scale(1.05);
+}
+.send-group .instagram-button {
+    background: linear-gradient(90deg, #F58529, #F77737, #D62976, #962FBF);
+}
+.send-group .instagram-button:hover {
+    background: linear-gradient(90deg, #D67C1F, #D66B2F, #B81F56, #7D1F8B); /* Darker gradient on hover */
+    transform: scale(1.05);
+}
+
+.send-group .messenger-button {
+    background-color: #0084FF;
+}
+
+.send-group .messenger-button:hover {
+    background-color: #0073e6; /* Lighter blue on hover */
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+.send-group .line-button {
+    background-color: #00C300; /* LINE Green */
+}
+.send-group .line-button:hover {
+    background-color: #009900; /* Darker green for hover */
+    transform: scale(1.05);
 }
 
 /* Media Queries for Responsiveness */

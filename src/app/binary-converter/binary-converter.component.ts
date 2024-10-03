@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { BinaryService } from '../services/binary.service';
 import { WhatsappService } from '../services/whatsapp.service';
 import { TelegramService } from '../services/telegram.service';
+import { MessengerService } from '../services/messenger.service';
 @Component({
   selector: 'app-binary-converter',
   templateUrl: './binary-converter.component.html',
@@ -12,9 +13,14 @@ export class BinaryConverterComponent {
   textInput: string = '';
   textOutput: string = '';
   binaryOutput: string = '';
-  currentView: string = 'textToBinary'; 
+  currentView: string = 'textToBinary';
+  language: string = 'en';
 
-  constructor(private binaryService: BinaryService, private whatsappService: WhatsappService,private telegramService: TelegramService) {}
+  constructor(private binaryService: BinaryService, 
+    private whatsappService: WhatsappService,
+    private telegramService: TelegramService,
+    private messengerService: MessengerService
+  ) {}
 
   showView(view: string) {
     this.currentView = view;
@@ -56,5 +62,43 @@ export class BinaryConverterComponent {
     this.telegramService.sendViaTelegram( message)
       .then(() => console.log("sending message"))
       .catch(err => alert(`Failed to send message: ${err}`));
+  }
+
+  sendMessageViaMessenger() {
+    // Determine message to send
+    const message = this.currentView === 'binaryToText' ? this.textOutput : this.binaryOutput;
+    if (!message) {
+      alert('No message to send.');
+      return;
+    }
+
+    this.messengerService.sendViaMessenger( message)
+      .then(() => console.log("sending message"))
+      .catch(error => alert(`Failed to send message: ${error}`));
+  }
+
+  sendMessageViaInstagram() {
+    // Determine message to send
+    const message = this.currentView === 'binaryToText' ? this.textOutput : this.binaryOutput;
+    if (!message) {
+      alert('No message to send.');
+      return;
+    }
+
+    this.messengerService.sendViaInstagram( message)
+      .then(() => console.log("sending message"))
+      .catch(error => alert(`Failed to send message: ${error}`));
+  }
+  sendMessageViaLine() {
+    // Determine message to send
+    const message = this.currentView === 'binaryToText' ? this.textOutput : this.binaryOutput;
+    if (!message) {
+      alert('No message to send.');
+      return;
+    }
+
+    this.messengerService.sendViaLine( message)
+      .then(() => console.log("sending message"))
+      .catch(error => alert(`Failed to send message: ${error}`));
   }
 }

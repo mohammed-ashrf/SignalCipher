@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CipherService } from '../services/cipher.service';
 import { WhatsappService } from '../services/whatsapp.service';
 import { TelegramService } from '../services/telegram.service';
+import { MessengerService } from '../services/messenger.service';
 @Component({
   selector: 'app-cipher',
   templateUrl: './cipher.component.html',
@@ -16,7 +17,8 @@ export class CipherComponent implements OnInit{
 
   constructor(private cipherService: CipherService, 
     private whatsappService: WhatsappService,
-    private telegramService: TelegramService
+    private telegramService: TelegramService,
+    private messengerService: MessengerService
   ) {
   }
   ngOnInit(): void {
@@ -68,6 +70,44 @@ export class CipherComponent implements OnInit{
     }
 
     this.telegramService.sendViaTelegram( message)
+      .then(() => console.log("sending message"))
+      .catch(error => alert(`Failed to send message: ${error}`));
+  }
+
+  sendMessageViaMessenger() {
+    // Determine message to send
+    const message = this.result;
+    if (!message) {
+      alert('No message to send.');
+      return;
+    }
+
+    this.messengerService.sendViaMessenger( message)
+      .then(() => console.log("sending message"))
+      .catch(error => alert(`Failed to send message: ${error}`));
+  }
+
+  sendMessageViaInstagram() {
+    // Determine message to send
+    const message = this.result;
+    if (!message) {
+      alert('No message to send.');
+      return;
+    }
+
+    this.messengerService.sendViaInstagram( message)
+      .then(() => console.log("sending message"))
+      .catch(error => alert(`Failed to send message: ${error}`));
+  }
+  sendMessageViaLine() {
+    // Determine message to send
+    const message = this.result;
+    if (!message) {
+      alert('No message to send.');
+      return;
+    }
+
+    this.messengerService.sendViaLine( message)
       .then(() => console.log("sending message"))
       .catch(error => alert(`Failed to send message: ${error}`));
   }
