@@ -1,0 +1,74 @@
+/* General styles for the developer container */
+.developer-container {
+    background-color: #1c1c1c;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: auto;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+h1, h2, h3, h4 {
+    color: #ffffff;
+}
+
+/* Styling for links */
+.developer-container a {
+    color: #00bcd4;
+    text-decoration: none;
+    font-weight: 900;
+}
+
+.developer-container a:hover {
+    text-decoration: underline;
+}
+
+/* Radio button styles */
+.radio-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.radio-group label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #e0e0e0; /* Light text color */
+    margin-bottom: 5px;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 5px;
+}
+
+/* Instructions container */
+.instructions-container {
+    margin-top: 20px;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    .developer-container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    h3, h4 {
+        font-size: 1.2em;
+    }
+
+    ol, ul {
+        padding-left: 20px;
+    }
+}

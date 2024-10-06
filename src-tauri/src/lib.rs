@@ -6,7 +6,6 @@ mod cipher;
 mod slack;
 mod messanger;
 mod line;
-
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
   tauri::Builder::default()
@@ -24,7 +23,7 @@ pub fn run() {
       messanger::send_via_messenger,
       messanger::send_via_instagram,
       line::send_via_line,
-      line::send_via_signal
+      line::send_via_signal,
     ])
     .plugin(tauri_plugin_shell::init())
     .run(tauri::generate_context!())

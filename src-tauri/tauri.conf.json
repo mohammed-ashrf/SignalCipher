@@ -1,9 +1,9 @@
 {
   "productName": "cipher-signal",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "identifier": "com.CipherSignal.dev",
   "build": {
-    "frontendDist": "../dist/decoder",
+    "frontendDist": "../dist/signal_cipher",
     "devUrl": "http://localhost:4200",
     "beforeDevCommand": "npm run start",
     "beforeBuildCommand": "npm run build"

@@ -1,0 +1,115 @@
+<div class="developer-container">
+    <div class="radio-group">
+        <label>
+          <input type="radio" name="language_en" value="en" [(ngModel)]="language" (change)="updateDirection($event)">
+          {{language== 'en' ? 'English' : 'الأنجليزية'}}
+        </label>
+        <label>
+          <input type="radio" name="language_ar" value="ar" [(ngModel)]="language" (change)="updateDirection($event)">
+          {{language == 'en' ? 'Arabic' : 'العربية'}}
+        </label>
+    </div>
+    <div class="english" *ngIf="language == 'en'">
+        <h1>About</h1>
+        <p>
+        Hello! I'm Mohammed Younis, the creator of SignalCipher. My goal is to provide users with a secure and user-friendly messaging experience.
+        </p>
+        <p>
+        For more information, visit my 
+        <a href="https://mohammedyounis.vercel.app" target="_blank" rel="noopener noreferrer" style="color: #fff; font-weight: 900;"> website</a>
+        </p>
+    </div>
+    <div class="arabic" *ngIf="language == 'ar'">
+        <h1>حول</h1>
+        <p>
+        مرحبًا! أنا محمد يونس، منشئ تطبيق SignalCipher. هدفي هو توفير تجربة مراسلة آمنة وسهلة الاستخدام للمستخدمين.
+        </p>
+        <p>
+        لمزيد من المعلومات، قم بزيارة 
+        <a href="https://mohammedyounis.vercel.app" target="_blank" rel="noopener noreferrer" style="color: #fff; font-weight: 900;">موقعي الإلكتروني</a>
+        </p>
+    </div>
+
+
+    <div class="instructions-container">
+        <div class="english" *ngIf="language == 'en'">
+            <h2>How to Use SignalCipher</h2>
+        
+            <h3>Encrypting Messages:</h3>
+            <ol>
+              <li>Enter Your Message and Key: Type your message in the input field and provide a key for encryption.</li>
+              <li>Click the 'Encrypt' Button: Your encrypted message will be generated.</li>
+            </ol>
+            
+            <h3>Sharing Encrypted Messages:</h3>
+            <h4>Using WhatsApp and Telegram:</h4>
+            <ol>
+              <li>Click the respective button (WhatsApp or Telegram).</li>
+              <li>Select the Recipient</li>
+              <li>The app will automatically prefill your encrypted message in the selected app.</li>
+              <li>Send the message.</li>
+            </ol>
+          
+            <h4>Using Instagram and Messenger:</h4>
+            <ol>
+              <li>Click the Instagram or Messenger button.</li>
+              <li>The app will copy your encrypted message to the clipboard.</li>
+              <li>Select the Recipient and paste the message into the chat.</li>
+            </ol>
+            
+            <h3>Decrypting Messages:</h3>
+            <ol>
+              <li>Copy the Encrypted Message: When you receive an encrypted message, copy it from the chat.</li>
+              <li>Paste in the Input Field: Paste the encrypted message into the message input field.</li>
+              <li>Enter the Key: Provide the key that was used to encrypt the message.</li>
+              <li>Click the 'Decrypt' Button: Your original message will be revealed.</li>
+            </ol>
+            
+            <h3>Why Use SignalCipher?</h3>
+            <ul>
+                <li>Secure Sharing: Share sensitive information securely, preventing unauthorized access even in case of data leaks from messaging apps.</li>
+                <li>Protecting Privacy: Keep your messages hidden from others who might have access to the recipient's device, ensuring confidentiality.</li>
+            </ul>   
+        </div>
+        <div class="arabic" *ngIf="language == 'ar'">
+            <h1>كيفية استخدام SignalCipher</h1>
+
+            <h2>تشفير الرسائل:</h2>
+            <ol>
+                <li>أدخل رسالتك والمفتاح: اكتب رسالتك في حقل الإدخال وقدم مفتاح التشفير.</li>
+                <li>انقر على زر "تشفير": سيتم إنشاء رسالتك المشفرة.</li>
+            </ol>
+
+            <h2>مشاركة الرسائل المشفرة:</h2>
+
+            <h3>باستخدام WhatsApp و Telegram:</h3>
+            <ol>
+                <li>انقر على الزر المناسب (WhatsApp أو Telegram).</li>
+                <li>اختر المستلم.</li>
+                <li>ستقوم التطبيق تلقائيًا بملء رسالتك المشفرة في التطبيق المحدد.</li>
+                <li>أرسل الرسالة.</li>
+            </ol>
+
+            <h3>باستخدام Instagram و Messenger:</h3>
+            <ol>
+                <li>انقر على زر Instagram أو Messenger.</li>
+                <li>ستقوم التطبيق بنسخ رسالتك المشفرة إلى الحافظة.</li>
+                <li>اختر المستلم والصق الرسالة في الدردشة.</li>
+            </ol>
+
+            <h2>فك تشفير الرسائل:</h2>
+            <ol>
+                <li>انسخ الرسالة المشفرة: عند استلام رسالة مشفرة، انسخها من الدردشة.</li>
+                <li>الصق في حقل الإدخال: الصق الرسالة المشفرة في حقل إدخال الرسالة.</li>
+                <li>أدخل المفتاح: قدم المفتاح الذي تم استخدامه لتشفير الرسالة.</li>
+                <li>انقر على زر "فك التشفير": ستظهر رسالتك الأصلية.</li>
+            </ol>
+
+            <h2>حالات الاستخدام</h2>
+            <ul>
+                <li>مشاركة آمنة: مشاركة المعلومات الحساسة بأمان، مما يمنع الوصول غير المصرح به حتى في حالة تسرب البيانات من تطبيقات المراسلة.</li>
+                <li>حماية الخصوصية: الحفاظ على رسائلك مخفية عن الآخرين الذين قد يكون لديهم إمكانية الوصول إلى جهاز المستلم، مما يضمن السرية.</li>
+            </ul>
+        </div>
+    </div>
+</div>  

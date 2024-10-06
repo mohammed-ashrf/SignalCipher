@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "decoder": {
+    "signal_cipher": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/decoder",
+            "outputPath": "dist/signal_cipher",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -61,10 +61,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "decoder:build:production"
+              "browserTarget": "signal_cipher:build:production"
             },
             "development": {
-              "browserTarget": "decoder:build:development"
+              "browserTarget": "signal_cipher:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -72,7 +72,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "decoder:build"
+            "browserTarget": "signal_cipher:build"
           }
         },
         "test": {
