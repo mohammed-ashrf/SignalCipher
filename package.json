@@ -1,5 +1,5 @@
 {
-  "name": "decoder",
+  "name": "signal_cipher",
   "version": "0.2.0",
   "scripts": {
     "ng": "ng",

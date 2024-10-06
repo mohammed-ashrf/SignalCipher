@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NetworkService } from './services/network.service';
+import { CheckForUpdatesService } from './services/check-for-updates.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,7 +7,7 @@ import { NetworkService } from './services/network.service';
 })
 export class AppComponent {
   title = 'decoder';
-  constructor(private networkservice: NetworkService) {
-
+  constructor(private checkForUpdatesService: CheckForUpdatesService) {
+    this.checkForUpdatesService.checkForUpdates();
   }
 }
