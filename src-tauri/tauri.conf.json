@@ -1,5 +1,5 @@
 {
-  "productName": "cipher-signal",
+  "productName": "Signal Cipher",
   "version": "0.2.0",
   "identifier": "com.CipherSignal.dev",
   "build": {
@@ -11,7 +11,7 @@
   "app": {
     "windows": [
       {
-        "title": "CipherSignal",
+        "title": "Signal Cipher",
         "width": 800,
         "height": 710,
         "resizable": true,
