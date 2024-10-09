@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'cipher', component: CipherComponent },
   { path: 'whatsapp', component: WhatsappComponent },
   { path: 'about-developer', component: AboutDeveloperComponent },
+  { path: '**', redirectTo: '/cipher' },
 ];
 
 @NgModule({
