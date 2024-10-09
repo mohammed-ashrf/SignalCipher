@@ -10,7 +10,7 @@ configs:
 settingGroups:
   app:
     base:
-      PRODUCT_NAME: cipher-signal
+      PRODUCT_NAME: Signal Cipher
       PRODUCT_BUNDLE_IDENTIFIER: com.CipherSignal.dev
 targetTemplates:
   app:
@@ -51,8 +51,8 @@ targets:
           - UIInterfaceOrientationPortraitUpsideDown
           - UIInterfaceOrientationLandscapeLeft
           - UIInterfaceOrientationLandscapeRight
-        CFBundleShortVersionString: 0.1.0
-        CFBundleVersion: 0.1.0
+        CFBundleShortVersionString: 0.2.0
+        CFBundleVersion: 0.2.0
     entitlements:
       path: app_iOS/app_iOS.entitlements
     scheme:
@@ -72,7 +72,7 @@ targets:
         EXCLUDED_ARCHS[sdk=iphoneos*]: arm64-sim x86_64
       groups: [app]
     dependencies:
-      - framework: libapp_lib.a
+      - framework: libapp.a
         embed: false
       - sdk: CoreGraphics.framework
       - sdk: Metal.framework
@@ -82,10 +82,10 @@ targets:
       - sdk: UIKit.framework
       - sdk: WebKit.framework
     preBuildScripts:
-      - script: cargo tauri ios xcode-script -v --platform ${PLATFORM_DISPLAY_NAME:?} --sdk-root ${SDKROOT:?} --framework-search-paths "${FRAMEWORK_SEARCH_PATHS:?}" --header-search-paths "${HEADER_SEARCH_PATHS:?}" --gcc-preprocessor-definitions "${GCC_PREPROCESSOR_DEFINITIONS:-}" --configuration ${CONFIGURATION:?} ${FORCE_COLOR} ${ARCHS:?}
+      - script: npm run -- tauri ios xcode-script -v --platform ${PLATFORM_DISPLAY_NAME:?} --sdk-root ${SDKROOT:?} --framework-search-paths "${FRAMEWORK_SEARCH_PATHS:?}" --header-search-paths "${HEADER_SEARCH_PATHS:?}" --gcc-preprocessor-definitions "${GCC_PREPROCESSOR_DEFINITIONS:-}" --configuration ${CONFIGURATION:?} ${FORCE_COLOR} ${ARCHS:?}
         name: Build Rust Code
         basedOnDependencyAnalysis: false
         outputFiles:
-          - $(SRCROOT)/Externals/x86_64/${CONFIGURATION}/libapp_lib.a
-          - $(SRCROOT)/Externals/arm64/${CONFIGURATION}/libapp_lib.a
-          - $(SRCROOT)/Externals/arm64-sim/${CONFIGURATION}/libapp_lib.a
+          - $(SRCROOT)/Externals/x86_64/${CONFIGURATION}/libapp.a
+          - $(SRCROOT)/Externals/arm64/${CONFIGURATION}/libapp.a
+          - $(SRCROOT)/Externals/arm64-sim/${CONFIGURATION}/libapp.a
