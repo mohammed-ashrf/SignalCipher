@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "identifier": "com.CipherSignal.dev",
   "build": {
-    "frontendDist": "../dist/signal_cipher",
+    "frontendDist": "../dist/signal_cipher/browser",
     "devUrl": "http://localhost:4200",
     "beforeDevCommand": "npm run start",
     "beforeBuildCommand": "npm run build"
